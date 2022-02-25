@@ -1,0 +1,9 @@
+﻿License type: BUSINESS
+Product: Construct 2
+Licensed to: Silvester
+Email: umyt.dev@gmail.com
+Comment: With best wishes from Figgler [mrfiggler@gmail.com]
+Timestamp: 1639174398
+Hash: 02A79804733822D84FC4EA994E6516D01D1146426E46A4
+
+This is PRIVATE license. Please TURN OFF "UPDATE CHECKING" in C2 preferences BEFORE USE!!!
