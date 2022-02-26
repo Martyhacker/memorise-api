@@ -11,29 +11,6 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-// func RegisterAdmin(c *fiber.Ctx) error {
-// 	var data map[string]string
-
-// 	if err := c.BodyParser(&data); err != nil {
-// 		return err
-// 	}
-// 	if data["password"] != data["password_confirm"] {
-// 		c.Status(400)
-// 		return c.JSON(fiber.Map{
-// 			"message": "Passwords do not match",
-// 		})
-// 	}
-
-// 	admin := models.User{
-// 		Email:        data["email"],
-// 	}
-// 	admin.SetPassword(data["password"])
-
-// 	database.DB.Create(&admin)
-
-// 	return c.JSON(admin)
-// }
-
 func LoginAdmin(c *fiber.Ctx) error {
 	var data map[string]string
 
@@ -70,16 +47,10 @@ func LoginAdmin(c *fiber.Ctx) error {
 			"message": "Invalid Credentials",
 		})
 	}
-
-	cookie := fiber.Cookie{
-		Name:     "jwt",
-		Value:    token,
-		Expires:  time.Now().Add(time.Hour * 24),
-		HTTPOnly: true,
-	}
-	c.Cookie(&cookie)
+	
 	return c.JSON(fiber.Map{
 		"message": "success",
+		"token":token,
 	})
 }
 
@@ -89,19 +60,6 @@ func Admin(c *fiber.Ctx) error{
 	database.DB.Where("id = ?", id).First(&admin)
 
 	return c.JSON(admin)
-}
-
-func LogoutAdmin(c *fiber.Ctx) error {
-	cookie := fiber.Cookie{
-		Name: "jwt",
-		Value: "",
-		Expires: time.Now().Add(-time.Hour),
-		HTTPOnly: true,
-	}
-	c.Cookie(&cookie)
-	return c.JSON(fiber.Map{
-		"message":"success",
-	})
 }
 
 func UpdateAdmin(c *fiber.Ctx) error {
